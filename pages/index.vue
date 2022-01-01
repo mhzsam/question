@@ -8,8 +8,6 @@ export default {
   computed() {
     console.log("dsadsadsad","123")
   },
-  created(){
-    console.log("asas","123")
-  }
+ 
 };
 </script>

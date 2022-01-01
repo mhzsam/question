@@ -4,46 +4,58 @@
     <v-app id="inspire">
       <v-stepper v-model="e1">
         <v-stepper-header>
-          <v-stepper-step :complete="e1 > 1" step="1"> </v-stepper-step>
-
-          <v-divider></v-divider>
-
-          <v-stepper-step :complete="e1 > 2" step="2"> </v-stepper-step>
-
-          <v-divider></v-divider>
+          <div v-for="(item, index) in Get_Data" :key="index">
+            <v-stepper-step :complete="e1 > index + 1" :step="index + 1">
+              سوال {{ index + 1 }}
+              
+            </v-stepper-step>
+          </div>
+          <!-- <v-stepper-step :complete="e1 > 2" step="2"> </v-stepper-step>
+          <v-divider></v-divider> -->
         </v-stepper-header>
 
-        <v-stepper-items>
-          <v-stepper-content step="1">
+
+        <v-stepper-items v-for="(item, index) in Get_Data" :key="index">
+          <v-stepper-content :step="index + 1">
             <v-card
               class="mb-12 ma-3"
               color="grey lighten-4"
-              height="200px"
+              height="250px"
               padding="20px"
             >
               <v-container class="px-10" fluid>
                 <v-radio-group v-model="radioGroup">
                   <template #label>
                     <div>
-                      <h2>{{ question1 }}</h2>
+                      <h2>{{ item.question_text }}</h2>
+                      
                       <br />
                     </div>
                   </template>
                   <v-radio
-                    v-for="n in 3"
-                    :key="n"
-                    :label="`Radio ${n}`"
-                    :value="n"
+                    v-for="(item2, index2) in item.answer2 "
+                    :key="index2"
+                    :label=item2.answer_text
+                    :value=parseInt(item2.answer_text)
+                    
                   ></v-radio>
                 </v-radio-group>
               </v-container>
             </v-card>
 
-            <v-btn class="btn-bold" color="primary" @click="e1 = 2">
+            <v-btn v-if="index!==Get_Data.length-1" class="btn-bold" color="primary" @click="e1 = index+2 ">
               بعدی
+            </v-btn>
+            <v-btn v-if="index!==0" class="btn-bold" color="primary" @click="e1 = index ">
+              قبلی
+            </v-btn>
+             <v-btn v-if="index==Get_Data.length-1" class="btn-bold"  color="primary" @click="sendData">
+              ارسال
             </v-btn>
           </v-stepper-content>
 
+
+<!-- 
           <v-stepper-content step="2">
             <v-card class="mb-12" color="grey lighten-4" height="200px"
               ><v-container class="px-10" fluid>
@@ -69,29 +81,35 @@
             </v-btn>
 
             <v-btn class="btn-bold" text @click="e1 = 1"> قبلی </v-btn>
-          </v-stepper-content>
+          </v-stepper-content> -->
         </v-stepper-items>
       </v-stepper>
     </v-app>
-<div>
- <ul>
-   <li v-for="item in Get_Data" :key="item.id">{{item.question_text}}</li>
- </ul>
-</div>
+    <div>
+      <!-- <ul>
+        <li v-for="item in Get_Data" :key="item.id">
+          {{ item.question_text }}
+        </li>
+      </ul> -->
 
+      <h1>
+        sum={{sumOfRadio}}
+      </h1>
+        
+      
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "QuestuionPage",
-  
+  name: "question",
+
   data() {
     return {
       e1: 1,
       radioGroup: 1,
-      question1: "سوال اول",
-      question2: "سوال دوم",
+      sumOfRadio:"",
       
     };
   },
@@ -100,12 +118,15 @@ export default {
   },
   computed: {
     Get_Data() {
-      return this.$store.getters.Get_Data.data
-      
+      return this.$store.getters.Get_Data.data;
     },
-    
-       
+   
   },
+  methods:{
+    sendData(){
+      alert(123)
+    }
+  }
 };
 </script>
 <style scoped >
