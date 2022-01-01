@@ -43,13 +43,13 @@
               </v-container>
             </v-card>
 
-            <v-btn v-if="index!==Get_Data.length-1" class="btn-bold" color="primary" @click="e1 = index+2 ">
+            <v-btn v-if="index!==Get_Data.length-1" class="btn-bold" color="primary" @click="sumAllOfRadio();e1 = index+2 ">
               بعدی
             </v-btn>
-            <v-btn v-if="index!==0" class="btn-bold" color="primary" @click="e1 = index ">
-              قبلی
+            <v-btn v-if="index!==0" class="btn-bold" color="primary"  @click="resetSumOfRadio();e1 = 1 ">
+              مجدد
             </v-btn>
-             <v-btn v-if="index==Get_Data.length-1" class="btn-bold"  color="primary" @click="sendData">
+             <v-btn v-if="index==Get_Data.length-1" class="btn-bold"  color="primary" @click="sumAllOfRadio()">
               ارسال
             </v-btn>
           </v-stepper-content>
@@ -93,7 +93,7 @@
       </ul> -->
 
       <h1>
-        sum={{sumOfRadio}}
+        sum={{radioGroup}}
       </h1>
         
       
@@ -108,8 +108,8 @@ export default {
   data() {
     return {
       e1: 1,
-      radioGroup: 1,
-      sumOfRadio:"",
+      radioGroup: 0,
+      sumOfRadio:0,
       
     };
   },
@@ -125,7 +125,20 @@ export default {
   methods:{
     sendData(){
       alert(123)
+    },
+    sumAllOfRadio(){
+      
+      this.sumOfRadio=this.radioGroup+this.sumOfRadio
+      console.log(this.sumOfRadio)
+
+    },
+    resetSumOfRadio(){
+      this.sumOfRadio=0
+      console.log("sum is" ,this.sumOfRadio)
+
     }
+    
+  
   }
 };
 </script>
