@@ -35,7 +35,7 @@ export const actions = {
             method: 'get',
             url: "http://vistaapi.citnog.ir/api/v1/customer/question/question/",
 
-        }).then(function(response) {
+        }).then(function (response) {
             commit('Set_Data', response.data)
             console.log("data", response.data)
 
@@ -44,18 +44,21 @@ export const actions = {
         })
 
     },
-    FetchReward({ commit, score }) {
+    FetchReward({ commit ,sumOfRadio}) {
         return axios({
 
-                method: 'get',
-                url: "http://vistaapi.citnog.ir/api/v1/customer/question/reward/?sum_answer_score=",
+            method: 'get',
+            url: "http://vistaapi.citnog.ir/api/v1/customer/question/reward/",
+            params: {
+                sum_answer_score:parseInt(sumOfRadio)
+            }
 
 
-            })
-            .then(function(response) {
+        })
+            .then(function (response) {
 
                 commit('Set_Reward', response.data)
-                    // console.log("Reward", response.data)
+                console.log("Reward", response.data)
 
             }).catch(() => {
                 console.log("error")

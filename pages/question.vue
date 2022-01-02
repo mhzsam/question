@@ -66,7 +66,7 @@
               v-if="index == Get_Data.length - 1"
               class="btn-bold"
               color="primary"
-              @click="sumAllOfRadioAnd()"
+              @click="sumAllOfRadioAnd(sumOfRadio)"
             >
               ارسال
             </v-btn>
@@ -145,9 +145,9 @@ export default {
       this.sumOfRadio = 0;
       console.log("sum is", this.sumOfRadio);
     },
-    sumAllOfRadioAnd(score) {
-     this.sumAllOfRadio();
-      this.$store.dispatch("FetchReward",score)
+    sumAllOfRadioAnd(sumOfRadio) {
+     
+      this.$store.dispatch("FetchReward",sumOfRadio)
     },
   },
 };
