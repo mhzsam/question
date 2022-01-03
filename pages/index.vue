@@ -6,7 +6,7 @@
 export default {
   name: "IndexPage",
   computed() {
-    console.log("dsadsadsad","123")
+    
   },
  
 };

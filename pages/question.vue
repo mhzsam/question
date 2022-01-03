@@ -123,6 +123,7 @@ export default {
       e1: 1,
       radioGroup: 0,
       sumOfRadio: 0,
+      reqest:false,
     };
   },
   fetch() {
@@ -145,9 +146,13 @@ export default {
       this.sumOfRadio = 0;
       console.log("sum is", this.sumOfRadio);
     },
-    sumAllOfRadioAnd(score) {
+    sumAllOfRadioAnd() {
      this.sumAllOfRadio();
-      this.$store.dispatch("FetchReward",score)
+     var param=this.sumOfRadio
+     console.log("param",param)
+      this.$store.dispatch("FetchReward",14)
+      
+      
     },
   },
 };

@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 export const state = () => {
     return {
         data: [],
@@ -44,18 +45,21 @@ export const actions = {
         })
 
     },
-    FetchReward({ commit, score }) {
+    FetchReward({ commit }, param) {
         return axios({
 
                 method: 'get',
-                url: "http://vistaapi.citnog.ir/api/v1/customer/question/reward/?sum_answer_score=",
+                url: "http://vistaapi.citnog.ir/api/v1/customer/question/reward/?sum_answer_score=" + param,
 
 
             })
             .then(function(response) {
-
                 commit('Set_Reward', response.data)
-                    // console.log("Reward", response.data)
+                console.log("Reward", response.data)
+                if (response.status == 200) {
+                    console.log("sdsad")
+                    $nuxt.$router.push("answer");
+                }
 
             }).catch(() => {
                 console.log("error")
