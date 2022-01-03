@@ -150,7 +150,7 @@ export default {
      this.sumAllOfRadio();
      var param=this.sumOfRadio
      console.log("param",param)
-      this.$store.dispatch("FetchReward",14)
+      this.$store.dispatch("FetchReward",param)
       
       
     },
