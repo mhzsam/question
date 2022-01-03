@@ -109,7 +109,7 @@
         </li>
       </ul> -->
 
-      <h1>sum={{ radioGroup }}</h1>
+     
     </div>
   </div>
 </template>
